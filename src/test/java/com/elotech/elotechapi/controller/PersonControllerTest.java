@@ -59,7 +59,14 @@ public class PersonControllerTest {
     public void getPersonByID() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/person/{id}",1))
                 .andExpect(status().is2xxSuccessful())
-                .andExpect(jsonPath("$.id").value(1));
+                .andExpect(jsonPath("$.id").value(1))
+                .andExpect(jsonPath("$.name").value("Adler"))
+                .andExpect(jsonPath("$.cpf").value("25267213004"))
+                .andExpect(jsonPath("$.birthDate").value("1995-03-02"))
+                .andExpect(jsonPath("$.contactList[*].id").value(1))
+                .andExpect(jsonPath("$.contactList[*].name").value("Celular"))
+                .andExpect(jsonPath("$.contactList[*].telephone").value("4499888888"))
+                .andExpect(jsonPath("$.contactList[*].email").value("adlercachuba@gmail.com"));
     }
 
     @Test
